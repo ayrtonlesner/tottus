@@ -1,0 +1,105 @@
+﻿
+@section css {
+    <!-- Page-Level Plugin CSS - Tables -->
+    @*<link href="~/Content/plugins/datepicker/datepicker.css" rel="stylesheet">
+    <link href="~/Content/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">*@
+}
+
+<div class="row">
+    <div class="col-md-12 col-md-offset-0">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"> @ViewBag.Title </h3>
+            </div>
+            <div class="panel-body">
+                <form role="form" id="frmMantPredecir" autocomplete="off">
+                    <fieldset>
+
+                        <div class="panel panel-default">
+                            <div class="panel-footer">Datos Busqueda</div>
+                            <div class="panel-body">
+                                <div class="panel-body">
+                               
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="panel panel-default">
+                                                <div class="panel-body">
+                                                    <div class="errorMsgPanel"></div>
+                                                    <div class="successMsgPanel"></div>
+                                                    @Html.AntiForgeryToken()
+
+                                                    <div class="col-md-1">
+                                                        <label for="txtSucursal" class="control-label">Año:</label>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <select class="form-control" id="anio" name="anio">
+                                                            <option value="2018" selected="selected">2018</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2020">2020</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-1">
+                                                        <label for="txtSucursal" class="control-label">Mes:</label>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <select class="form-control" id="mes" name="mes">
+                                                            <option value="01" selected="selected">ENERO</option>
+                                                            <option value="02">FEBRERO</option>
+                                                            <option value="03">MARZO</option>
+                                                            <option value="04">ABRIL</option>
+                                                            <option value="05">MAYO</option>
+                                                            <option value="06">JUNIO</option>
+                                                            <option value="07">JULIO</option>
+                                                            <option value="08">AGOSTO</option>
+                                                            <option value="09">SEPTIEMBRE</option>
+                                                            <option value="10">OCTUBRE</option>
+                                                            <option value="11">NOVIEMBRE</option>
+                                                            <option value="12">DICIEMBRE</option>
+                                                        </select>
+                                                    </div>
+                                                   
+                                                    <div class="col-md-6">
+                                                        <button type="button" id="btnPredecir" name="btnPredecir" class="btn btn-outline btn-primary">Predecir</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <iframe id="idFrame" frameborder="0" style="height:1400px; width: 100%;" scrolling="yes"></iframe>
+
+                        <div class="loadingDiv" style="width: 100%;">
+                            <img src="@Url.Content("~/Content/images/ajax-loader.gif")" />
+                            @Html.AntiForgeryToken()
+                        </div>
+                    </fieldset>
+                </form>
+                <br />
+                <div id="frmListarProcesosISOContent"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+
+    @*<script src="~/Scripts/plugins/datepicker/bootstrap-datepicker.js" charset="UTF-8"></script>
+    <script src="~/Scripts/plugins/datepicker/bootstrap-datepicker.es.min.js" charset="UTF-8"></script>*@
+
+    @*<script src="~/Scripts/plugins/dataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/plugins/dataTables/dataTables.bootstrap.js"></script>*@
+
+    <script src="~/Views/PredecirAbastecimiento/MantPredecirAbastecimiento.js"></script>
+    <script type="text/javascript">
+        // Ejecucion de script para vista
+        (function () {
+            docInit("@Url.Content("~/")");
+        })();
+    </script>
+}
+
+

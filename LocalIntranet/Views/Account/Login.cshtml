@@ -1,0 +1,57 @@
+﻿@model LocalIntranet.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Inicio de sesión";
+}
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <div class="login-panel panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">@ViewBag.Title.</h3>
+            </div>
+            <div class="panel-body">
+                @* using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" })) *@
+                <form role="form" id="frmLogin" autocomplete="off">
+                    <fieldset>
+                        <div class="errorMsgPanel"></div>
+                        <div class="form-group">
+                            @* Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" }) *@
+                            <!-- <div class="col-md-10"> -->
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Usuario", autofocus = "autofocus" })
+                            @Html.ValidationMessageFor(m => m.UserName)
+                            @Html.AntiForgeryToken()
+                            <!-- </div> -->
+                        </div>
+                        <div class="form-group">
+                            @* Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" }) *@
+                            <!-- <div class="col-md-10"> -->
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Contraseña" })
+                            @Html.ValidationMessageFor(m => m.Password)
+                            <!-- </div> -->
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                @Html.LabelFor(m => m.RememberMe)
+                            </label>
+                        </div>
+                        <div class="loadingDiv" style="width: 100%;">
+                            <img src="@Url.Content("~/Content/images/ajax-loader.gif")" />
+                        </div>
+                        <input id="btnLogin" type="button" value="Ingresar" class="btn btn-lg btn-info btn-block" />
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+    @section scripts {
+        @* Scripts.Render("~/bundles/jqueryval") *@
+        <script src="~/Views/Account/Login.js"></script>
+        <script type="text/javascript">
+            // Ejecucion de script para vista
+            (function () {
+                docInit("@Url.Content("~/")", "@Html.Raw(ViewBag.ReturnUrl)");
+            }) ();
+        </script>
+    }

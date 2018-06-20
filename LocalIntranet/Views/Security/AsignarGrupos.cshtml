@@ -1,0 +1,52 @@
+﻿@section css {
+    <!-- Page-Level Plugin CSS - Tables -->
+    <link href="~/Content/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">@ViewBag.Title</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form role="form" id="frmGrupo" autocomplete="off">
+                    <fieldset>
+                        <div class="errorMsgPanel"></div>
+                        <div class="form-group">
+                            <label for="c_codigogrupo" class="col-sm-2 control-label">Grupo Acceso</label>
+                            <div class="col-sm-10">
+                                @Html.DropDownList("c_codigogrupo")
+                            </div>
+                        </div>
+                        <div class="loadingDiv" style="width: 100%;">
+                            <img src="@Url.Content("~/Content/images/ajax-loader.gif")" />
+                            @Html.AntiForgeryToken()
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="center-block"><b>Usuario Asignados/ No asignados</b></div>
+        <div id="wUsuariosAsignar"></div>
+    </div>
+</div>
+@section scripts {
+    @* Scripts.Render("~/bundles/jqueryval") *@
+    <script src="~/Scripts/plugins/dataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <script src="~/Views/Security/AsignarGrupos.js"></script>
+    <script type="text/javascript">
+        // Ejecucion de script para vista
+        (function () {
+            docInit("@Url.Content("~/")");
+        })();
+    </script>
+}

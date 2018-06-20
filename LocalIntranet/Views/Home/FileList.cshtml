@@ -1,0 +1,43 @@
+﻿@model IEnumerable<System.IO.FileSystemInfo>
+@{
+    ViewBag.Title = @ViewBag.titulo;
+}
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><b>@ViewBag.Title</b></h3>
+            </div>
+            <div class="panel-body">
+                @* Tabla de Arhivos:  Detalle de archivos --> dos columnas *@
+                    <!-- <th style="width : 5%;">
+                    <a href="@Url.Action("FileList", "Home", new { path = ViewBag.atras, ruta = ViewBag.ruta }, null)">
+                            <div class="ui-icon ui-icon-circle-arrow-w" style="display : inline-block"></div>
+                    </a>
+                    </th> -->
+                <ul class="list-group">
+                    @foreach (var item in Model)
+                    {
+                        if (Object.ReferenceEquals(item.GetType(), typeof(FileInfo)))
+                        {
+                            <a href="#">
+                                <li class="list-group-item">
+                                    <i class="fa fa-file-text"></i> @Html.DisplayFor(itemModel => item.Name)
+                                </li>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action(ViewBag.Metodo, "Home", new { path = item.FullName }, null)">
+                                <li class="list-group-item">
+                                    <i class="fa fa-folder"></i> @Html.DisplayFor(itemModel => item.Name)
+                                </li>
+                            </a>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

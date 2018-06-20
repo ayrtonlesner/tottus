@@ -1,0 +1,25 @@
+﻿@model IEnumerable<LocalIntranet.Models.SecurityEntities.UserGroup>
+
+<form role="form" id="frmAsignarGrupo" autocomplete="off">
+    @Html.AntiForgeryToken()
+</form>
+<table class="table table-striped table-bordered table-hover" id="tblUserGroup">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.c_codigousuario)</th>
+            <th>@Html.DisplayNameFor(model => model.b_incluido)</th>
+            <th>@Html.DisplayNameFor(model => model.c_nombre)</th>
+            <th>Incluido</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr data-codigousuario="@item.c_codigousuario">
+                <td>@Html.DisplayFor(modelItem => item.c_codigousuario)</td>
+                <td><div class="checkbox center-block"><label>@Html.CheckBoxFor(modelItem => item.b_incluido)</label></div></td>
+                <td>@Html.DisplayFor(modelItem => item.c_nombre)</td>
+                <td>@(item.b_incluido ? "Miembro" : "Libre")</td>
+            </tr>
+        }
+    </tbody>
+</table>

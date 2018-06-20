@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Your ASP.NET application</title>
+    <style>
+        body {
+            background: #fff;
+            color: #505050;
+            font: 14px 'Segoe UI', tahoma, arial, helvetica, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+
+        #header {
+            background: #efefef;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: normal;
+            margin: 0;
+            padding: 0 30px;
+            line-height: 150px;
+        }
+
+        p {
+            font-size: 20px;
+            color: #fff;
+            background: #969696;
+            padding: 0 30px;
+            line-height: 50px;
+        }
+
+        #main {
+            padding: 5px 30px;
+        }
+
+        .section {
+            width: 21.7%;
+            float: left;
+            margin: 0 0 0 4%;
+        }
+
+            .section h2 {
+                font-size: 13px;
+                text-transform: uppercase;
+                margin: 0;
+                border-bottom: 1px solid silver;
+                padding-bottom: 12px;
+                margin-bottom: 8px;
+            }
+
+            .section.first {
+                margin-left: 0;
+            }
+
+                .section.first h2 {
+                    font-size: 24px;
+                    text-transform: none;
+                    margin-bottom: 25px;
+                    border: none;
+                }
+
+                .section.first li {
+                    border-top: 1px solid silver;
+                    padding: 8px 0;
+                }
+
+            .section.last {
+                margin-right: 0;
+            }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            line-height: 20px;
+        }
+
+        li {
+            padding: 4px 0;
+        }
+
+        a {
+            color: #267cb2;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+<body>
+
+    <div id="header">
+        <h1>Intranet Local</h1>
+        <p>Esta página brinda los lineamientos y reglas que utiliza este sitio, se recomienda seguirlos </p>
+    </div>
+
+    <div id="main">
+        <div class="section first">
+            <h2>Esta aplicación consiste en</h2>
+            <ul>
+                <li>Opciones para una Intranet, mostrar información que se conecta al sistema </li>
+                <li>La presentación está orientada a cualquier tamaño de pantalla (desktop, tablet, movil) usando Bootstrap</a></li>
+                <li>La autenticación está vinculada con el usuario del Active Directory </li>
+                <li>La autorización a opciones/acciones está integrada con del ERP de la empresa.</a></li>
+            </ul>
+        </div>
+        <div class="section">
+            <h2>General</h2>
+            <ul>
+                <li>La aplicación está hecha en el framework MVC de Microsoft, basado en solicitudes http</li>
+                <li>Esto significa que todas las interacciones son por medio de acciones (metodos de un controlador)</li>
+                <li>Estas acciones tienen una direccion o URL (Controlador/Accion)</li>
+                <li>Existen acciones Regulares y acciones Ajax, solo se han usado solicitudes tipo GET y POST</li>
+                <li>La parte del modelo(M) es manejada por Entity Framework, la cual ejecuta Procedimientos Almacenados en su mayoría</li>
+                <li>La parte de vista(V) es manejada por jQuery y otros frameworks que trabajan sobre este (Bootstrap, Morris, MetisMenu)</li>
+            </ul>
+        </div>
+        <div class="section">
+            <h2>Seguridad</h2>
+            <ul>
+                <li>Para autenticar el usuario se utiliza el ActiveDirectory Membership Provider, se valida con la cuenta del Dominio</li>
+                <li>La autorizacion está integrada con el sistema principal(Spring), siendo la Intranet la aplicación 'IN'</a></li>
+                <li>Apoyado en la seguridad del sistema principal, cada usuario carga sus opciones en el menú de acuerdo a las opciones asignadas a los grupos a los que pertenece el usuario</li>
+                <li>Un usuario puede pertenecer a uno o varios Grupos, es posible asignar una opción directamente a un usuario, pero esto no es recomendable</li>
+                <li>Las opciones(tabla:sys_menu, aplicacion:IN) se asignan a los grupos mediante el modulo de Tesorería, están amarradas por la columna 'c_nombremenu'</li>
+                <li>Los grupos en realidad son un usuario más con el campo c_perfil = 'GP'</li>
+                <li>Existe un filtro que verifica si el usuario tiene acceso a CADA acción(solicitud) que intente ejecutar</li>
+                <li>Para esto, la acción debe estar registrada como opción en el módulo de tesorería y asignada a los grupos pertinentes</li>
+                <li>Es posible saltar dicha seguridad para ciertas acciones que estén dentro de las opciones principales</li>
+                <li>Para saltar dicha verificación se debe colocar el Atributo [AllowLoggedUser] al método</li>
+                <li>Cabe resaltar que esta exclusión de autorización solo debería aplicarse para acciones Ajax, por lo tanto se recomienda agregar tambien el atributo [AjaxOnly]</li>
+                <li>Toda acción Ajax debería ser llamada con una solicitud POST, así que debería agregarse el atributo [HttpPost]</li>
+                <li>Asimismo, toda solicitud POST debe usar un Token de seguridad, por lo que se recomienda usar tambien [AntiForgeryToken]</li>
+                <li>El uso de los atributos mencionados se puede verificar en las acciones Account/Login o Personal/ListarDirectorioRes</li>
+            </ul>
+        </div>
+
+        <div class="section last">
+            <h2>Get help</h2>
+            <ul>
+                <li><a href="http://go.microsoft.com/fwlink/?LinkID=320772">Get help</a></li>
+                <li><a href="http://go.microsoft.com/fwlink/?LinkID=320773">Get more templates</a></li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
